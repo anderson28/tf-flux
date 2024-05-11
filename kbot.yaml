@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kbot
+  namespace: demo
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/anderson28/kbot
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kbot
+  namespace: demo
+spec:
+  chart:
+    spec:
+      chart: ./helm
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: kbot
+  interval: 1m0s
