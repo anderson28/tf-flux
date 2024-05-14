@@ -38,7 +38,7 @@ variable "GKE_MACHINE_TYPE" {
   type        = string
 }
 
-variable "KBOT_TOKEN" {
-  type = string
-  description = "kbot token"
-}
+# variable "KBOT_TOKEN" {
+#   type = string
+#   description = "kbot token"
+# }
